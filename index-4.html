@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HCC — Havana Cigar Club | Fine Habanos, Dubai Lounge</title>
+<meta name="description" content="HCC — Havana Cigar Club. A curated collection of fine Habanos. Light it, Live it & Love it. Enquire on WhatsApp.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Tailwind (utility layer only — visual design lives in style.css) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AGE GATE ================= -->
+<div id="age-gate" class="age-gate">
+  <div class="age-gate__inner">
+    <img src="assets/hcc.jpg" alt="HCC — Havana Cigar Club" class="age-gate__crest">
+    <p class="age-gate__eyebrow">Before you enter</p>
+    <h2 class="age-gate__title">This is a room for adults<br>who appreciate fine tobacco.</h2>
+    <p class="age-gate__copy">HCC sells tobacco products. Please confirm you are of legal smoking age in your country of residence.</p>
+    <div class="age-gate__actions">
+      <button id="age-confirm" class="btn btn--gold">I am of legal age — Enter</button>
+      <a href="https://www.google.com" class="btn btn--ghost">Exit</a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= AMBIENT SMOKE CANVAS ================= -->
+<canvas id="smoke-canvas" class="smoke-canvas"></canvas>
+
+<!-- ================= NAV ================= -->
+<header id="site-nav" class="site-nav">
+  <div class="site-nav__inner">
+    <a href="#top" class="brand">
+      <img src="assets/hcc.jpg" alt="HCC crest" class="brand__crest">
+      <span class="brand__word">HCC<span class="brand__sub">Havana Cigar Club</span></span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#heritage">Heritage</a>
+      <a href="#collection">Collection</a>
+      <a href="#lounge">The Lounge</a>
+      <a href="#why">Why HCC</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="https://wa.me/963988614489" target="_blank" rel="noopener" class="icon-link icon-link--whatsapp" aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.4-1.4-3.3-2.9-.1-.2-.1-.4.1-.5.2-.2.5-.5.7-.8.2-.2.1-.5 0-.7-.1-.2-.7-1.7-1-2.3-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3 0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2 2.4 1 2.4.7 2.8.6.4 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.2 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.6 3.1 13.3 3.1 12c0-4.9 4-8.9 8.9-8.9s8.9 4 8.9 8.9-4 8.9-8.9 8.9z"/></svg>
+      </a>
+      <button id="cart-toggle" class="cart-toggle" aria-label="Open inquiry list">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h2l2.4 12.4a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        <span id="cart-count" class="cart-count">0</span>
+      </button>
+      <button id="menu-toggle" class="menu-toggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobile-menu" class="mobile-menu">
+    <a href="#heritage">Heritage</a>
+    <a href="#collection">Collection</a>
+    <a href="#lounge">The Lounge</a>
+    <a href="#why">Why HCC</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero__vignette"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow"><span class="ember-dot"></span> Fine Habanos &middot; By Inquiry Only</p>
+      <img src="assets/hcc.jpg" alt="HCC — Havana Cigar Club crest" class="hero__crest">
+      <h1 class="hero__title">Havana<br><em>Cigar Club</em></h1>
+      <p class="hero__slogan">Light it, Live it &amp; Love it <span class="hero__slogan-fx">💨✨</span></p>
+      <div class="hero__actions">
+        <a href="#collection" class="btn btn--gold">Explore the Collection</a>
+        <a href="#lounge" class="btn btn--outline">Visit the Lounge</a>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <span></span>
+      <p>Scroll</p>
+    </div>
+  </section>
+
+  <!-- ================= HERITAGE ================= -->
+  <section id="heritage" class="heritage">
+    <div class="section-inner heritage__grid">
+      <div class="heritage__text">
+        <p class="eyebrow"><span class="ember-dot"></span> Our Heritage</p>
+        <h2 class="section-title">A ritual carried by hand,<br>from the Vega to the lounge.</h2>
+        <p class="body-copy">HCC was built on a simple conviction: that a great cigar is not a product, it is an occasion. Every box that reaches our humidor is sourced through trusted channels and kept at the humidity and warmth a Habano deserves, so that the leaf you light is exactly as its torcedor intended.</p>
+        <p class="body-copy">We don't believe in catalogues with prices and checkout carts. We believe in conversation — a quiet word on WhatsApp, a recommendation suited to your evening, a box set aside with your name on it.</p>
+      </div>
+      <div class="heritage__pillars">
+        <div class="pillar">
+          <span class="pillar__icon">①</span>
+          <h3>Authentic Habanos</h3>
+          <p>Every box verified, every band genuine.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar__icon">②</span>
+          <h3>Hand-Rolled Origin</h3>
+          <p>Rolled in Cuba, aged with patience.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar__icon">③</span>
+          <h3>Concierge Ordering</h3>
+          <p>Personal guidance, one chat away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COLLECTION ================= -->
+  <section id="collection" class="collection">
+    <div class="section-inner">
+      <p class="eyebrow eyebrow--center"><span class="ember-dot"></span> Signature Collection</p>
+      <h2 class="section-title section-title--center">The Catalog</h2>
+      <p class="body-copy body-copy--center collection__intro">Every box below is available by inquiry. No prices are listed here by design — tell us what calls to you, and we'll quote you privately on WhatsApp.</p>
+
+      <div id="filter-tabs" class="filter-tabs">
+        <button class="filter-tab is-active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="cohiba">Cohiba</button>
+        <button class="filter-tab" data-filter="montecristo">Montecristo</button>
+        <button class="filter-tab" data-filter="partagas">Partagás</button>
+        <button class="filter-tab" data-filter="hoyo">Hoyo de Monterrey</button>
+        <button class="filter-tab" data-filter="others">Others</button>
+      </div>
+
+      <div id="product-grid" class="product-grid"><!-- injected by script.js --></div>
+    </div>
+  </section>
+
+  <!-- ================= LOUNGE ================= -->
+  <section id="lounge" class="lounge">
+    <div class="section-inner">
+      <p class="eyebrow eyebrow--center"><span class="ember-dot"></span> The Lounge Experience</p>
+      <h2 class="section-title section-title--center">Where the smoke settles slowly.</h2>
+      <div class="lounge__gallery">
+        <div class="lounge__tile lounge__tile--lg" data-label="The Humidor Wall"><span>The Humidor Wall</span></div>
+        <div class="lounge__tile" data-label="Private Seating"><span>Private Seating</span></div>
+        <div class="lounge__tile" data-label="The Roller's Corner"><span>The Roller's Corner</span></div>
+        <div class="lounge__tile" data-label="Golden Hour Terrace"><span>Golden Hour Terrace</span></div>
+        <div class="lounge__tile lounge__tile--lg" data-label="The Tasting Bar"><span>The Tasting Bar</span></div>
+      </div>
+      <p class="lounge__note">Gallery placeholders shown above — swap in your own lounge photography (see notes.txt).</p>
+    </div>
+  </section>
+
+  <!-- ================= WHY HCC ================= -->
+  <section id="why" class="why">
+    <div class="section-inner">
+      <p class="eyebrow eyebrow--center"><span class="ember-dot"></span> Why HCC</p>
+      <h2 class="section-title section-title--center">Exclusivity, without the noise.</h2>
+      <div class="why__grid">
+        <div class="why__card">
+          <div class="why__icon">🔥</div>
+          <h3>100% Authentic</h3>
+          <p>Every box is sourced and verified — no greymarket, no guesswork.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__icon">💬</div>
+          <h3>Discreet Ordering</h3>
+          <p>No public pricing, no accounts. Just a private word on WhatsApp.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__icon">🥃</div>
+          <h3>Rare & Limited</h3>
+          <p>Edición Limitada and humidor releases, while they last.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__icon">🛋️</div>
+          <h3>Lounge Access</h3>
+          <p>Regulars are welcomed into the lounge by invitation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER / CONTACT ================= -->
+  <footer id="contact" class="footer">
+    <div class="section-inner footer__grid">
+      <div class="footer__brand">
+        <img src="assets/hcc.jpg" alt="HCC crest" class="footer__crest">
+        <p class="footer__slogan">Light it, Live it &amp; Love it 💨✨</p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Navigate</h4>
+        <a href="#heritage">Heritage</a>
+        <a href="#collection">Collection</a>
+        <a href="#lounge">The Lounge</a>
+        <a href="#why">Why HCC</a>
+      </div>
+
+      <div class="footer__col">
+        <h4>Speak to us</h4>
+        <a href="https://wa.me/963988614489" target="_blank" rel="noopener" class="footer__contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.4-1.4-3.3-2.9-.1-.2-.1-.4.1-.5.2-.2.5-.5.7-.8.2-.2.1-.5 0-.7-.1-.2-.7-1.7-1-2.3-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3 0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2 2.4 1 2.4.7 2.8.6.4 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.2 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.6 3.1 13.3 3.1 12c0-4.9 4-8.9 8.9-8.9s8.9 4 8.9 8.9-4 8.9-8.9 8.9z"/></svg>
+          WhatsApp — +963 988 614 489
+        </a>
+        <a href="tel:+963983025324" class="footer__contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.8a2 2 0 0 1-.4 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.9.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          Call — +963 983 025 324
+        </a>
+        <a href="https://www.instagram.com/bahaa.aldeen.ahmed?igsh=MXRkMmVtZWY3NXRicQ==" target="_blank" rel="noopener" class="footer__contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
+
+      <div class="footer__col footer__newsletter">
+        <h4>Stay in the loop</h4>
+        <p>Rare arrivals & humidor drops, occasionally.</p>
+        <form id="newsletter-form" class="newsletter-form">
+          <input type="email" required placeholder="Your email" aria-label="Email address">
+          <button type="submit" class="btn btn--gold btn--sm">Join</button>
+        </form>
+        <p id="newsletter-success" class="newsletter-success">You're on the list.</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; <span id="year"></span> HCC — Havana Cigar Club. All rights reserved.</p>
+      <p class="footer__disclaimer">For adults of legal smoking age only. Enjoy responsibly.</p>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a href="https://wa.me/963988614489" target="_blank" rel="noopener" class="float-whatsapp" aria-label="Chat with us on WhatsApp">
+  <span class="float-whatsapp__ring"></span>
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.4-.6-2.4-1.4-3.3-2.9-.1-.2-.1-.4.1-.5.2-.2.5-.5.7-.8.2-.2.1-.5 0-.7-.1-.2-.7-1.7-1-2.3-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.4-.2.3-.9 1-.9 2.3 0 1.3 1 2.6 1.1 2.8.1.2 1.9 3 4.7 4.2 2.4 1 2.4.7 2.8.6.4 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.5 5.2L2 22l4.9-1.3c1.5.8 3.2 1.3 5.1 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.3-.5-4.7-1.3l-.3-.2-3.3.9.9-3.2-.2-.3C3.6 14.6 3.1 13.3 3.1 12c0-4.9 4-8.9 8.9-8.9s8.9 4 8.9 8.9-4 8.9-8.9 8.9z"/></svg>
+</a>
+
+<!-- ================= INQUIRY / CART DRAWER ================= -->
+<div id="cart-overlay" class="cart-overlay"></div>
+<aside id="cart-drawer" class="cart-drawer">
+  <div class="cart-drawer__head">
+    <h3>Your Inquiry List</h3>
+    <button id="cart-close" aria-label="Close">&times;</button>
+  </div>
+  <p class="cart-drawer__hint">No prices, no commitment — just send the list and we'll quote you privately.</p>
+  <div id="cart-items" class="cart-items"></div>
+  <div id="cart-empty" class="cart-empty">Your list is empty. Browse the collection and tap "Ask for Price" on anything that calls to you.</div>
+  <div class="cart-drawer__footer">
+    <button id="cart-send" class="btn btn--gold btn--block">Send Inquiry on WhatsApp</button>
+  </div>
+</aside>
+
+<!-- toast -->
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
